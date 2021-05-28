@@ -1,0 +1,74 @@
+import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
+
+class Sector_F_17_2_F17_3_islamabad extends StatefulWidget {
+  @override
+  _Sector_F_17_2_F17_3_islamabadState createState() => _Sector_F_17_2_F17_3_islamabadState();
+}
+
+class _Sector_F_17_2_F17_3_islamabadState extends State<Sector_F_17_2_F17_3_islamabad> {
+  final imageList = [
+    'https://c135.pcloud.com/dpZu9eBEsZ1q6JRMZkqcR7ZZGa6lG7ZNVZZAMRZXZ2P47WvJHrpQFHER4j1c3L8sWnHxk/th-28884187073-1600x1038.jpg',
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
+        title: Text("Sector F-17/2 & F17/3"),
+      ),
+      // add this body tag with container and photoview widget
+      body: Container(
+        child: Center(
+          child: Container(
+            height: 800,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                elevation: 20,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: PhotoViewGallery.builder(
+                    itemCount: imageList.length,
+                    builder: (context, index) {
+                      return PhotoViewGalleryPageOptions(
+                        basePosition: Alignment.center,
+                        imageProvider: NetworkImage(imageList[index]),
+                        minScale: PhotoViewComputedScale.contained * 0.8,
+                        maxScale: PhotoViewComputedScale.covered * 5,
+
+                      );
+                    },
+                    scrollPhysics: BouncingScrollPhysics(),
+                    backgroundDecoration: BoxDecoration(
+                      borderRadius:BorderRadius.all(Radius.circular(20)),
+                      color: Theme.of(context).canvasColor,
+                    ),
+                    enableRotation:true,
+                    loadingBuilder: (context, event) => Center(
+                      child: Container(
+                        width: 30.0,
+                        height: 30.0,
+                        child: CircularProgressIndicator(
+                          backgroundColor:Colors.orange,
+                          value: event == null
+                              ? 0
+                              : event.cumulativeBytesLoaded / event.expectedTotalBytes,
+                        ),
+                      ),
+                    ),
+
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// https://colorlinemapsapp.000webhostapp.com/wallpaper/DHA%20PESHAWAR%20UPDATE%20PLAN%20(%20A%20)-Model%20(1)_page-0001.jpg
